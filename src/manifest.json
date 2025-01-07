@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "AI-Powered Bookmark Manager",
+  "version": "1.0",
+  "description": "Manage and organize your bookmarks with AI suggestions.",
+  "permissions": ["storage", "activeTab", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {}
+  },
+  "icons": {}
+}
