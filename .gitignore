@@ -1,0 +1,30 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+myenv/
+env/
+get-pip.py
+
+# Node modules
+node_modules/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python packages
+*.egg-info/
+*.dist-info/
+
+# Logs
+*.log
+
+# Editor settings
+.vscode/
+
+# Ignore all untracked files in site-packages
+site-packages/
