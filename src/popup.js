@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Popup loaded!");
-  // Add event listeners or fetch data here
+  chrome.bookmarks.getTree((bookmarkTreeNodes) => {
+    console.log("All browser bookmarks:", bookmarkTreeNodes);
+  });
 });
