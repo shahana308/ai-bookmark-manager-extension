@@ -1,11 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
   chrome.bookmarks.getTree((bookmarkTreeNodes) => {
     const categorizedBookmark = getCategorizedBookmark(bookmarkTreeNodes);
-    console.log(categorizedBookmark);
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const currentTab = tabs[0];
+
+      const currentUrl = currentTab.url;
+      const currentTitle = currentTab.title;
+
+      classifyBookmark(currentTitle, currentUrl)
+        .then((category) => {
+          console.log("AI-predicted category:", category);
+          addBookmarkToCategory(
+            category,
+            currentTitle,
+            currentUrl,
+            categorizedBookmark
+          );
+        })
+        .catch((err) => console.error("AI classification error:", err));
+    });
   });
 });
 
-// Get existing bookmark folder
 const getCategorizedBookmark = (bookmarkNodes) => {
   const result = [];
   bookmarkNodes[0].children.map((allbookmark) => {
@@ -19,5 +36,42 @@ const getCategorizedBookmark = (bookmarkNodes) => {
   return result;
 };
 
-// when a bookmark icon is clicked, AI should check the content of the url, check if any keyword is there in existing bookmark
-// if existing, add to that folder; else create a new foler using a meaningful name.
+const classifyBookmark = async (title, url) => {
+  console.log(title, url);
+  const response = await fetch("http://127.0.0.1:8000/classify", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, url }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to classify: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.category;
+};
+
+const addBookmarkToCategory = (category, title, url, existingFolders) => {
+  const existingFolder = existingFolders.find(
+    (folder) => folder.title === category
+  );
+
+  if (existingFolder) {
+    chrome.bookmarks.create(
+      { parentId: existingFolder.id, title, url },
+      (newBookmark) => {
+        console.log("Bookmark added to existing folder:", newBookmark);
+      }
+    );
+  } else {
+    chrome.bookmarks.create({ title: category }, (newFolder) => {
+      chrome.bookmarks.create(
+        { parentId: newFolder.id, title, url },
+        (newBookmark) => {
+          console.log("Bookmark added to new folder:", newBookmark);
+        }
+      );
+    });
+  }
+};
