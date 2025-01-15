@@ -18,13 +18,19 @@ classifier = pipeline(
     "zero-shot-classification",
     model="facebook/bart-large-mnli"
 )
+summarizer = pipeline(
+    "summarization", model= "t5-small"
+)
 
-class TextData(BaseModel):
+class ClassifyTextData(BaseModel):
     title: str
     url: str
+class SummaryRequest(BaseModel):
+    text: str 
+
 
 @app.post("/classify")
-def classify_page(data: TextData):
+def classify_page(data: ClassifyTextData):
     text = f"{data.title} {data.url}"  
     candidate_labels = [
         "Travel", "Development", "Programming", "Technology", "Software Engineering",
@@ -39,3 +45,8 @@ def classify_page(data: TextData):
     ]    
     result = classifier(text, candidate_labels=candidate_labels)  
     return {"category": result["labels"][0]} 
+
+@app.post("/summarize")
+def summarize(data: SummaryRequest):
+    summary = summarizer(data.text, max_length=100, min_length=25, do_sample=False)
+    return {"summary": summary[0]["summary_text"]}
