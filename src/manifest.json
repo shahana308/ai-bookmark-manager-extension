@@ -3,10 +3,22 @@
   "name": "AI-Powered Bookmark Manager",
   "version": "1.0",
   "description": "Manage and organize your bookmarks with AI suggestions.",
-  "permissions": ["storage", "activeTab", "tabs", "bookmarks"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "bookmarks",
+    "nativeMessaging"
+  ],
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {}
