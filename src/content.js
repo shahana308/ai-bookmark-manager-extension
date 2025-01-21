@@ -1,9 +1,12 @@
-console.log("ss");
+console.log("Content script loaded");
+
 chrome.runtime.sendMessage("get-user-data", (response) => {
   if (chrome.runtime.lastError) {
-    console.error("Error:", chrome.runtime.lastError.message);
+    console.error(
+      "Error from Service Worker:",
+      chrome.runtime.lastError.message
+    );
   } else {
-    console.log("Received user data:", response);
-    initializeUI(response);
+    console.log("Received response from Service Worker:", response);
   }
 });
