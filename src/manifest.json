@@ -8,13 +8,15 @@
     "activeTab",
     "tabs",
     "bookmarks",
-    "nativeMessaging"
+    "nativeMessaging",
+    "file:///*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
+      "all_frames": true,
       "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
