@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Summary received from API:", data.summary);
-        cachedSummary = data.summary; // Cache the summary
+        cachedSummary = data.summary;
         sendResponse({ summary: data.summary });
       })
       .catch((error) => {

@@ -33,6 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
         response.summary || "No summary available.";
     }
   });
+
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const currentTab = tabs[0];
+    const currentTitle = currentTab.title || "Unknown Title";
+    const currentUrl = currentTab.url || "Unknown URL";
+
+    document.getElementById(
+      "bookmark-title"
+    ).textContent = `Title: ${currentTitle}`;
+    document.getElementById("bookmark-url").textContent = `URL: ${currentUrl}`;
+  });
 });
 
 const getCategorizedBookmark = (bookmarkNodes) => {

@@ -3,7 +3,7 @@ console.log("Content script loaded");
 const getPageContent = () => {
   const bodyText = document.body.innerText;
   console.log("bodyText", bodyText);
-  return bodyText.substring(0, 2000);
+  return bodyText.substring(0, 5000);
 };
 
 chrome.runtime.sendMessage(
