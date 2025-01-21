@@ -1,12 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Bookmark Manager</title>
     <script src="popup.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 10px;
+        width: 400px;
+        background-color: #f9f9f9;
+      }
+
+      h3 {
+        margin-top: 0;
+        color: #333;
+        text-align: center;
+      }
+
+      #summary {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+        max-height: 150px;
+        overflow-y: auto;
+      }
+
+      .button-container {
+        text-align: center;
+        margin: 15px 0;
+      }
+
+      .button {
+        background-color: #0078d4;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #005fa3;
+      }
+
+      .bookmarked-info {
+        margin-top: 20px;
+        background-color: #eef6ff;
+        border: 1px solid #0078d4;
+        border-radius: 5px;
+        padding: 10px;
+        color: #0078d4;
+        font-size: 14px;
+      }
+
+      .bookmarked-info h4 {
+        margin: 0 0 5px;
+        font-size: 14px;
+        color: #005fa3;
+      }
+
+      .bookmarked-info p {
+        margin: 5px 0;
+      }
+    </style>
   </head>
   <body>
-    <h3>Summary:</h3>
-    <div id="summary">Click "Summarize Page" to get the summary.</div>
+    <h3>AI Bookmark Manager</h3>
+
+    <div id="summary">
+      <strong>Summary:</strong>
+      <p>Click "Summarize Page" to get the summary.</p>
+    </div>
+
+    <div class="bookmarked-info">
+      <h4>Bookmarked:</h4>
+      <p id="bookmark-title">Title: Not available</p>
+      <p id="bookmark-url">URL: Not available</p>
+    </div>
   </body>
 </html>

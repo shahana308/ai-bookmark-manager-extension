@@ -48,5 +48,5 @@ def classify_page(data: ClassifyTextData):
 
 @app.post("/summarize")
 def summarize(data: SummaryRequest):
-    summary = summarizer(data.text, max_length=100, min_length=25, do_sample=False)
+    summary = summarizer(data.text, max_length=200, min_length=25, do_sample=False)
     return {"summary": summary[0]["summary_text"]}
