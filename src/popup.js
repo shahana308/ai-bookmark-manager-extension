@@ -21,6 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch((err) => console.error("AI classification error:", err));
     });
   });
+
+  chrome.runtime.sendMessage({ action: "get-summary" }, (response) => {
+    if (chrome.runtime.lastError) {
+      console.error("Error:", chrome.runtime.lastError.message);
+      document.getElementById("summary").textContent =
+        "Error retrieving summary.";
+    } else {
+      console.log("Received summary in popup:", response.summary);
+      document.getElementById("summary").textContent =
+        response.summary || "No summary available.";
+    }
+  });
 });
 
 const getCategorizedBookmark = (bookmarkNodes) => {
