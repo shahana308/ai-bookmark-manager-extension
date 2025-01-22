@@ -23,7 +23,15 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": {}
+    "default_icon": {
+      "16": "bookmark-icon.png",
+      "48": "bookmark-icon.png",
+      "128": "bookmark-icon.png"
+    }
   },
-  "icons": {}
+  "icons": {
+    "16": "bookmark-icon.png",
+    "48": "bookmark-icon.png",
+    "128": "bookmark-icon.png"
+  }
 }
