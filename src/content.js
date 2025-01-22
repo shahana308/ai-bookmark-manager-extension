@@ -1,14 +1,25 @@
 console.log("Content script loaded");
 
 const getPageContent = () => {
-  const bodyText = document.body.innerText;
-  console.log("Original bodyText:", bodyText);
+  const paragraphs = Array.from(document.querySelectorAll("p"));
 
-  const ignoreList = ["Privacy - Terms", "protected by reCAPTCHA", "-"];
+  const bodyText = paragraphs
+    .map((p) => p.innerText.trim())
+    .filter((text) => text.length > 0)
+    .join("\n");
+
+  console.log("Extracted text from <p> tags:", bodyText);
+
+  const ignoreList = [
+    "Privacy - Terms",
+    "protected by reCAPTCHA",
+    "ads",
+    "Advertisement",
+  ];
 
   const filteredText = bodyText
     .split("\n")
-    .filter((line) => !ignoreList.includes(line.trim()))
+    .filter((line) => !ignoreList.some((ignore) => line.includes(ignore)))
     .join("\n");
 
   console.log("Filtered bodyText:", filteredText);
