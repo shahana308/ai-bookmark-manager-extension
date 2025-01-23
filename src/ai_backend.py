@@ -16,10 +16,15 @@ app.add_middleware(
 
 classifier = pipeline(
     "zero-shot-classification",
-    model="facebook/bart-large-mnli"
+    model="valhalla/distilbart-mnli-12-3",     
+    device=-1
+
 )
 summarizer = pipeline(
-    "summarization", model= "t5-small"
+    "summarization", 
+    model="sshleifer/distilbart-cnn-12-6",     
+    device=-1
+
 )
 
 class ClassifyTextData(BaseModel):
