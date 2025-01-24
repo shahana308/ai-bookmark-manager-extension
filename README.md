@@ -27,6 +27,9 @@ The AI-Powered Bookmark Manager Extension leverages the power of **AI** to seaml
 
 3. **View Your Bookmarks**:
    - Navigate to your browser's bookmark manager to see the organized bookmarks along with generated summaries.
+     
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/43e6878f-e6a3-430c-ba13-cf835fdfe77c" />
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/5150bf71-93ff-484f-925f-8ac4db891b57" />
 
 ## Dependencies
 
