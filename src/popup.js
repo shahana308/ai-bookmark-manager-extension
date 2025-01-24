@@ -61,11 +61,14 @@ const getCategorizedBookmark = (bookmarkNodes) => {
 
 const classifyBookmark = async (title, url) => {
   console.log(title, url);
-  const response = await fetch("http://127.0.0.1:8000/classify", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, url }),
-  });
+  const response = await fetch(
+    "https://ai-bookmark-manager-extension.onrender.com/classify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, url }),
+    }
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to classify: ${response.statusText}`);

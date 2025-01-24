@@ -4,9 +4,7 @@
 __pycache__/
 
 # Virtual environment
-venv/
 myenv/
-env/
 get-pip.py
 src/.env
 
