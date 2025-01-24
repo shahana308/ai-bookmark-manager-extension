@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "summarize-page") {
     console.log("Received page content for summarization");
 
-    fetch("http://127.0.0.1:8000/summarize", {
+    fetch("https://ai-bookmark-manager-extension.onrender.com/summarize", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

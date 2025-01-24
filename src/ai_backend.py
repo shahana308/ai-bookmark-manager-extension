@@ -35,15 +35,7 @@ class SummaryRequest(BaseModel):
 def classify_page(data: ClassifyTextData):
     text = f"{data.title} {data.url}"
     candidate_labels = [
-        "Travel", "Development", "Programming", "Technology", "Software Engineering",
-        "Web Development", "Machine Learning", "Design", "UI/UX Design",
-        "Graphic Design", "Product Design", "Learning", "Education",
-        "Online Courses", "Research", "News", "Politics", "World Events",
-        "Science", "Entertainment", "Movies", "Music", "Gaming", "TV Shows",
-        "Sports", "Social Media", "Trends", "TikTok", "Instagram", "Twitter",
-        "Self-Help", "Health and Wellness", "Fitness", "Productivity",
-        "Business", "Finance", "Investing", "Startups", "Marketing",
-        "Food", "Lifestyle", "Photography"
+        "Travel", "Development", "Programming", "Technology", "Software Engineering", "Machine Learning", "Education", "Health", "Productivity", "Finance"
     ]
     payload = {
         "inputs": text,
